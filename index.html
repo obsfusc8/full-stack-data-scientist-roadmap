@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ultimate Full-Stack Data Scientist & AI Systems Architect — MIT OCW × Stanford Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#f8f6f1;
+    --bg-elev:#ffffff;
+    --bg-card:#ffffff;
+    --ink:#1c1a17;
+    --ink-soft:#4a453d;
+    --ink-faint:#847c6e;
+    --line:#e4ddd0;
+    --line-strong:#cec4b5;
+    --mit:#8a1a2b;
+    --mit-soft:#f9e8ea;
+    --mit-border:#e3b3b9;
+    --stan:#8c1515;
+    --stan-soft:#fcecee;
+    --stan-border:#e6b4b4;
+    --accent:#1e5e4a;
+    --accent-soft:#e6f2ec;
+    --accent-border:#a9d1c1;
+    --spec-quant:#8a5a12;
+    --spec-quant-soft:#fbf2e1;
+    --spec-quant-border:#e6caa2;
+    --spec-bio:#1e4f7a;
+    --spec-bio-soft:#e6f0f8;
+    --spec-bio-border:#a6cbe7;
+    --chip:#eee8dc;
+    --shadow: 0 1px 3px rgba(28,26,23,0.05), 0 10px 28px -14px rgba(28,26,23,0.12);
+    --shadow-hover: 0 4px 12px rgba(28,26,23,0.08), 0 16px 36px -12px rgba(28,26,23,0.18);
+    --radius: 14px;
+    --serif: "JetBrains Mono", monospace;
+    --sans: "JetBrains Mono", monospace;
+    --mono: "JetBrains Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14120f;
+      --bg-elev:#1c1914;
+      --bg-card:#1e1b16;
+      --ink:#f2eee5;
+      --ink-soft:#ccc4b5;
+      --ink-faint:#8c8475;
+      --line:#322d25;
+      --line-strong:#484136;
+      --mit:#e4848f;
+      --mit-soft:#2b1518;
+      --mit-border:#63272e;
+      --stan:#e79490;
+      --stan-soft:#2b1616;
+      --stan-border:#662525;
+      --accent:#79c7ab;
+      --accent-soft:#15261f;
+      --accent-border:#2a4f40;
+      --spec-quant:#e2b66a;
+      --spec-quant-soft:#2c2214;
+      --spec-quant-border:#5c4320;
+      --spec-bio:#7db6e8;
+      --spec-bio-soft:#152332;
+      --spec-bio-border:#294663;
+      --chip:#29241c;
+      --shadow: 0 2px 4px rgba(0,0,0,0.35), 0 10px 28px -10px rgba(0,0,0,0.6);
+      --shadow-hover: 0 6px 16px rgba(0,0,0,0.5), 0 20px 40px -10px rgba(0,0,0,0.75);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#14120f; --bg-elev:#1c1914; --bg-card:#1e1b16; --ink:#f2eee5; --ink-soft:#ccc4b5; --ink-faint:#8c8475;
+    --line:#322d25; --line-strong:#484136; --mit:#e4848f; --mit-soft:#2b1518; --mit-border:#63272e;
+    --stan:#e79490; --stan-soft:#2b1616; --stan-border:#662525; --accent:#79c7ab; --accent-soft:#15261f;
+    --accent-border:#2a4f40; --spec-quant:#e2b66a; --spec-quant-soft:#2c2214; --spec-quant-border:#5c4320;
+    --spec-bio:#7db6e8; --spec-bio-soft:#152332; --spec-bio-border:#294663; --chip:#29241c;
+    --shadow: 0 2px 4px rgba(0,0,0,0.35), 0 10px 28px -10px rgba(0,0,0,0.6);
+    --shadow-hover: 0 6px 16px rgba(0,0,0,0.5), 0 20px 40px -10px rgba(0,0,0,0.75);
+  }
+  :root[data-theme="light"]{
+    color-scheme: light;
+    --bg:#f8f6f1; --bg-elev:#ffffff; --bg-card:#ffffff; --ink:#1c1a17; --ink-soft:#4a453d; --ink-faint:#847c6e;
+    --line:#e4ddd0; --line-strong:#cec4b5; --mit:#8a1a2b; --mit-soft:#f9e8ea; --mit-border:#e3b3b9;
+    --stan:#8c1515; --stan-soft:#fcecee; --stan-border:#e6b4b4; --accent:#1e5e4a; --accent-soft:#e6f2ec;
+    --accent-border:#a9d1c1; --spec-quant:#8a5a12; --spec-quant-soft:#fbf2e1; --spec-quant-border:#e6caa2;
+    --spec-bio:#1e4f7a; --spec-bio-soft:#e6f0f8; --spec-bio-border:#a6cbe7; --chip:#eee8dc;
+    --shadow: 0 1px 3px rgba(28,26,23,0.05), 0 10px 28px -14px rgba(28,26,23,0.12);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  code, pre, .code, .badge, .phase-num, .stat-label, .num-table, .nav-pills a, .filter-btn, .btn-theme, .progress-label, .overall-header, .visual-roadmap-container, .card-links, .stage-badge, .stage-desc, .stage-pill, .exec-header, .schedule-pill {
+    font-family: var(--mono);
+    font-variant-ligatures: none;
+    -webkit-font-feature-settings: "calt" 0, "liga" 0;
+    font-feature-settings: "calt" 0, "liga" 0;
+  }
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  main.wrap{padding-bottom:48px;}
+  a{color:inherit;}
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  h1,h2,h3{scroll-margin-top:92px; text-wrap:balance;}
+  :focus-visible{outline:3px solid var(--accent); outline-offset:3px;}
+  .skip-link{
+    position:fixed; left:16px; top:12px; z-index:100; transform:translateY(-180%);
+    background:var(--ink); color:var(--bg); padding:9px 13px; border-radius:8px;
+    font-size:13px; font-weight:700; text-decoration:none; transition:transform .15s ease;
+  }
+  .skip-link:focus{transform:translateY(0);}
+
+  /* Header */
+  header.hero{
+    border-bottom:1px solid var(--line);
+    padding:36px 0 28px;
+    background:
+      radial-gradient(1300px 360px at 10% -10%, var(--mit-soft), transparent 65%),
+      radial-gradient(1300px 360px at 90% -10%, var(--stan-soft), transparent 65%);
+  }
+  .eyebrow{
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-faint); display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap;
+  }
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--ink-faint);}
+  .hero-title-row{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+  h1{
+    font-family:var(--serif); font-weight:700; font-size:clamp(27px,4vw,44px);
+    line-height:1.12; margin:0 0 12px; letter-spacing:-0.045em;
+  }
+  h1 em{font-style:italic; color:var(--mit); font-weight:500;}
+  .lede{font-size:14px; color:var(--ink-soft); max-width:78ch; margin:0 0 18px; line-height:1.65;}
+  .meta-stats-bar{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:8px; margin-top:18px;
+    background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--radius); padding:12px 16px;
+    box-shadow:var(--shadow);
+  }
+  .stat-item{display:flex; flex-direction:column;}
+  .stat-val{font-family:var(--mono); font-size:20px; font-weight:700; color:var(--ink);}
+  .stat-label{font-size:11.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em;}
+
+  /* Search & Sticky Controls */
+  .sticky-bar{
+    position:sticky; top:0; z-index:40; background:var(--bg); border-bottom:1px solid var(--line);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); padding:8px 0;
+  }
+  .sticky-inner{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .search-box{
+    position:relative; flex:1; min-width:260px;
+  }
+  .search-box input{
+    width:100%; font-family:var(--sans); font-size:12px; padding:8px 12px 8px 32px;
+    border-radius:999px; border:1px solid var(--line-strong); background:var(--bg-elev);
+    color:var(--ink); outline:none; transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .search-box input:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+  .search-icon{
+    position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:14px;
+    color:var(--ink-faint); pointer-events:none;
+  }
+  .nav-pills{display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; flex:2; min-width:320px;}
+  .nav-pills a, .filter-btn{
+    font-size:11.5px; padding:7px 13px; border-radius:999px;
+    color:var(--ink-soft); text-decoration:none; border:1px solid var(--line); background:var(--bg-elev);
+    cursor:pointer; white-space:nowrap; transition:color .15s ease, background-color .15s ease, border-color .15s ease;
+  }
+  .nav-pills a:hover, .filter-btn:hover{border-color:var(--line-strong); color:var(--ink);}
+  .filter-btn.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+  .btn-theme{
+    font-size:11.5px; padding:7px 14px; border-radius:999px;
+    border:1px solid var(--line-strong); background:var(--bg-elev); color:var(--ink-soft);
+    cursor:pointer; margin-left:auto; display:inline-flex; align-items:center; gap:6px;
+    transition:color .15s ease, background-color .15s ease, border-color .15s ease;
+  }
+
+  /* Overall Progress bar */
+  .overall-progress-card{
+    background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--radius);
+    padding:14px 18px; margin:18px 0 4px; display:flex; flex-direction:column; gap:6px;
+    box-shadow:var(--shadow);
+  }
+  .overall-header{display:flex; justify-content:space-between; align-items:center; font-size:13px;}
+  .overall-track{height:8px; background:var(--chip); border-radius:999px; overflow:hidden;}
+  .overall-fill{height:100%; width:100%; transform:scaleX(0); transform-origin:left; background:linear-gradient(90deg,var(--mit),var(--stan),var(--accent)); transition:transform .4s ease;}
+
+  /* Visual Roadmap Architecture */
+  .visual-roadmap-container{
+    padding: 26px 0 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .visual-roadmap-header{
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .diagram-kicker{
+    color:var(--accent); font-size:12px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; margin:0 0 8px;
+  }
+  .diagram-legend{
+    display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; color:var(--ink-faint);
+    font-size:11px;
+  }
+  .diagram-legend span{display:inline-flex; align-items:center; gap:6px;}
+  .diagram-legend i{width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block;}
+  .diagram-legend i.branch{background:var(--spec-quant);}
+  .visual-pipeline{
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    position: relative;
+    margin-top: 10px;
+  }
+  .visual-pipeline::before{
+    content:""; position:absolute; top:31px; left:8%; right:8%; height:2px;
+    background:linear-gradient(90deg,var(--mit),var(--stan),var(--accent)); opacity:.5;
+  }
+  .pipeline-stage{
+    position:relative; z-index:1;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 13px 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .pipeline-stage:hover{
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-hover);
+  }
+  .stage-badge{
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 4px;
+  }
+  .stage-badge::before{
+    content:""; display:inline-block; width:9px; height:9px; margin:0 7px 0 1px;
+    border-radius:50%; background:var(--accent); vertical-align:1px; box-shadow:0 0 0 4px var(--accent-soft);
+  }
+  .stage-title{
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+  .stage-desc{
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .stage-tags{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
+  }
+  .stage-pill{
+    font-size: 10.5px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: var(--chip);
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    transition: color .15s ease, background-color .15s ease, border-color .15s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  .stage-pill:hover{
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .stage-pill.gap-pill{
+    border-style: dashed;
+    border-color: var(--spec-quant-border);
+    color: var(--spec-quant);
+    background: var(--spec-quant-soft);
+  }
+  .stage-pill.quant-pill{
+    border-color: var(--spec-quant-border);
+    color: var(--spec-quant);
+    background: var(--spec-quant-soft);
+  }
+  .stage-pill.bio-pill{
+    border-color: var(--spec-bio-border);
+    color: var(--spec-bio);
+    background: var(--spec-bio-soft);
+  }
+
+  /* Sections */
+  section{padding:32px 0 24px; border-bottom:1px solid var(--line);}
+  section[style]{padding:32px 0 24px !important;}
+  #executive-summary[style], #numbering-section[style], #gap-section[style]{padding:24px 0 18px !important;}
+  section:last-of-type{border-bottom:none;}
+  .phase-head{display:flex; align-items:baseline; gap:10px; margin-bottom:6px; flex-wrap:wrap;}
+  .phase-num{
+    font-size:12.5px; font-weight:600; color:var(--ink-faint); border:1px solid var(--line-strong);
+    border-radius:999px; padding:3px 12px; background:var(--bg-elev);
+  }
+  h2{font-family:var(--serif); font-size:22px; font-weight:700; margin:0; letter-spacing:-0.035em;}
+  h3.subhead{font-family:var(--serif); font-size:18px; font-weight:700; margin:18px 0 8px;}
+  .phase-meta{font-size:12px; color:var(--ink-faint); margin-left:auto;}
+  .phase-intro{color:var(--ink-soft); max-width:82ch; margin:8px 0 16px; font-size:13px; line-height:1.6;}
+
+  .phase-progress-row{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .progress-track{height:6px; background:var(--chip); border-radius:999px; overflow:hidden; flex:1; max-width:320px;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--mit),var(--stan)); width:100%; transform:scaleX(0); transform-origin:left; transition:transform .3s ease;}
+  .progress-label{font-size:11.5px; color:var(--ink-faint);}
+
+  /* Course Cards Grid */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px;}
+  .card{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:14px 14px 12px; box-shadow:var(--shadow); position:relative;
+    display:flex; flex-direction:column; transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{border-color:var(--line-strong); box-shadow:var(--shadow-hover); transform:translateY(-2px);}
+  .card.done{opacity:.6; border-style:dashed;}
+  .card-top{display:flex; align-items:flex-start; gap:12px;}
+  .cb{
+    appearance:none; -webkit-appearance:none; width:20px; height:20px; min-width:20px; margin-top:3px;
+    border:1.5px solid var(--line-strong); border-radius:6px; cursor:pointer; background:var(--bg-elev);
+    display:grid; place-content:center; transition:background-color .15s ease, border-color .15s ease;
+  }
+  .cb:hover{border-color:var(--accent);}
+  .cb:checked{background:var(--accent); border-color:var(--accent);}
+  .cb:checked::after{content:"✓"; color:#fff; font-size:12px; font-weight:700;}
+  .card-body{flex:1; min-width:0;}
+  .badge-row{display:flex; align-items:center; gap:7px; margin-bottom:8px; flex-wrap:wrap;}
+  .badge{
+    font-size:10px; font-weight:700; letter-spacing:.04em; padding:2px 7px;
+    border-radius:5px; text-transform:uppercase; border:1px solid transparent;
+  }
+  .badge-mit{background:var(--mit-soft); color:var(--mit); border-color:var(--mit-border);}
+  .badge-stan{background:var(--stan-soft); color:var(--stan); border-color:var(--stan-border);}
+  .badge-spec-quant{background:var(--spec-quant-soft); color:var(--spec-quant); border-color:var(--spec-quant-border);}
+  .badge-spec-bio{background:var(--spec-bio-soft); color:var(--spec-bio); border-color:var(--spec-bio-border);}
+  .badge-accent{background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border);}
+  .code{font-size:11.5px; color:var(--ink-faint);}
+  .card h3{font-family:var(--sans); font-size:13px; font-weight:700; margin:0 0 6px; line-height:1.4;}
+  .card h3 a{text-decoration:none; border-bottom:1px solid var(--line-strong); transition:border-color .15s;}
+  .card h3 a:hover{border-color:currentColor; color:var(--mit);}
+  .card p{margin:0 0 8px; font-size:12px; color:var(--ink-soft); line-height:1.55;}
+  .card-links{display:flex; gap:8px; flex-wrap:wrap; font-size:11.5px; margin-top:auto; padding-top:8px;}
+  .card-links a{color:var(--ink-faint); text-decoration:none; border:1px solid var(--line); border-radius:4px; padding:2px 7px;}
+  .card-links a:hover{color:var(--ink); border-color:var(--line-strong); background:var(--chip);}
+  .note{
+    font-size:12px; color:var(--ink-faint); border-top:1px dashed var(--line); padding-top:8px; margin-top:8px;
+    line-height:1.45;
+  }
+  .note b{color:var(--ink-soft); font-weight:600;}
+
+  /* Callouts & Tables */
+  .callout{border-radius:var(--radius); padding:16px 20px; margin:16px 0 22px; border:1px solid var(--line);}
+  .callout h4{margin:0 0 10px; font-size:15.5px; font-family:var(--sans); font-weight:700; display:flex; gap:8px; align-items:center;}
+  .callout p, .callout li{font-size:14px; color:var(--ink-soft); margin:0 0 8px; line-height:1.6;}
+  .callout ul{margin:8px 0 0; padding-left:22px;}
+  .callout.warn{background:var(--spec-quant-soft); border-color:var(--spec-quant-border);}
+  .callout.warn h4{color:var(--spec-quant);}
+  .callout.accent{background:var(--accent-soft); border-color:var(--accent-border);}
+  .callout.accent h4{color:var(--accent);}
+  .callout.bio{background:var(--spec-bio-soft); border-color:var(--spec-bio-border);}
+  .callout.bio h4{color:var(--spec-bio);}
+  .callout.plain{background:var(--bg-elev);}
+
+  .num-table, .matrix-table{
+    width:100%; border-collapse:collapse; font-size:13px; margin-top:14px;
+  }
+  .num-table th, .num-table td, .matrix-table th, .matrix-table td{
+    padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
+  }
+  .num-table th, .matrix-table th{font-weight:700; color:var(--ink); background:var(--chip);}
+  .num-table td.old{color:var(--ink-faint);}
+  .num-table td.new{font-weight:600; color:var(--ink);}
+
+  .capstone-box{
+    background:var(--bg-elev); border-top:2px solid var(--accent); border-radius:var(--radius);
+    padding:14px 18px; margin-top:16px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); border-left:1px solid var(--line);
+    box-shadow:var(--shadow);
+  }
+  .capstone-box h5{margin:0 0 6px; font-size:13.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--accent);}
+  .capstone-box p{margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.6;}
+
+  /* Definition list cards */
+  .def-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin-top:12px;}
+  .def-card{
+    background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--radius); padding:13px; box-shadow:var(--shadow);
+  }
+  .def-card h5{margin:0 0 6px; font-size:14.5px; font-family:var(--sans); font-weight:700; color:var(--ink);}
+  .def-card p{margin:0; font-size:13px; color:var(--ink-soft); line-height:1.55;}
+
+  /* Schedule Cards */
+  .sched-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:10px; margin-top:12px;}
+  .sched-card{
+    background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--radius); padding:15px; box-shadow:var(--shadow);
+  }
+  .sched-card h4{margin:0 0 6px; font-size:16px; font-family:var(--sans); font-weight:700;}
+  .schedule-pill{font-size:11px; padding:3px 8px; border-radius:999px; background:var(--chip); color:var(--ink-soft); display:inline-block; margin-bottom:10px;}
+  .sched-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin:0 0 8px;}
+
+  @media (max-width:860px){
+    .visual-pipeline{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .visual-pipeline::before{display:none;}
+  }
+  @media (max-width:560px){
+    .wrap{padding-left:18px; padding-right:18px;}
+    main.wrap{padding-bottom:32px;}
+    .visual-pipeline{grid-template-columns:1fr;}
+    .phase-meta{margin-left:0;}
+    .btn-theme{margin-left:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important;}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to roadmap</a>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span>Curriculum · Verified 2024–2026 Edition</span><span class="dot"></span>
+      <span>MIT OpenCourseWare × Stanford Online</span><span class="dot"></span>
+      <span>All-In-One Master Curriculum</span>
+    </div>
+    <div class="hero-title-row">
+      <div>
+        <h1>The Ultimate <em>Full-Stack Data Scientist</em></h1>
+        <p class="lede">The complete, un-gated curriculum synthesizing high-dimensional mathematical rigor, distributed data systems, from-scratch LLM pretraining, production MLOps, and specialized frontiers (Quant Finance &amp; Genomic AI). Every course is audited against live portals across <strong>ocw.mit.edu</strong>, <strong>online.stanford.edu/free-courses</strong>, and Stanford CS departmental hubs.</p>
+      </div>
+    </div>
+
+    <div class="meta-stats-bar">
+      <div class="stat-item">
+        <span class="stat-val" id="totalCoursesVal">36</span>
+        <span class="stat-label">Curated Courses</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val">8 + 2</span>
+        <span class="stat-label">Core Pillars &amp; Tracks</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val">100% Free</span>
+        <span class="stat-label">Un-gated Open Access</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val" id="completedCountVal">0 / 36</span>
+        <span class="stat-label">Your Local Progress</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="sticky-bar">
+  <div class="wrap sticky-inner">
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <label class="sr-only" for="courseSearch">Search courses</label>
+      <input type="search" id="courseSearch" name="course-search" autocomplete="off" placeholder="Search courses, professors, topics, codes…">
+    </div>
+    <div class="nav-pills">
+      <button class="filter-btn active" data-filter="all">All Courses</button>
+      <button class="filter-btn" data-filter="mit">MIT OCW</button>
+      <button class="filter-btn" data-filter="stan">Stanford</button>
+      <button class="filter-btn" data-filter="core">Core ML/AI</button>
+      <button class="filter-btn" data-filter="systems">Systems &amp; SWE</button>
+      <button class="filter-btn" data-filter="spec">Specializations</button>
+    </div>
+    <button class="btn-theme" id="themeBtn" type="button" aria-label="Toggle color theme">◐ Theme</button>
+  </div>
+</div>
+
+<main id="main-content" class="wrap">
+
+  <div class="overall-progress-card">
+    <div class="overall-header">
+      <span>Curriculum Completion Tracker</span>
+      <span id="overallPct">0% Complete</span>
+    </div>
+    <div class="overall-track"><div class="overall-fill" id="overallFill"></div></div>
+  </div>
+
+  <!-- Visual Roadmap Architecture -->
+  <section id="visual-roadmap-section" class="visual-roadmap-container">
+    <p class="diagram-kicker">Block diagram · prerequisite flow</p>
+    <div class="visual-roadmap-header">
+      <span class="phase-num">Visual Architecture</span>
+      <h2>Curriculum Flow &amp; Learning Progression</h2>
+      <span class="phase-meta">5 sequential stages</span>
+    </div>
+    <div class="diagram-legend" aria-label="Diagram legend">
+      <span><i aria-hidden="true"></i> Core progression</span>
+      <span><i class="branch" aria-hidden="true"></i> Optional specialization branch</span>
+    </div>
+    <div class="visual-pipeline" role="list" aria-label="Five-stage roadmap progression">
+      <!-- Stage 1 -->
+      <div class="pipeline-stage" role="listitem">
+        <div class="stage-badge">Stage 01</div>
+        <div class="stage-title">Foundations</div>
+        <div class="stage-desc">Math &amp; Empirical Reasoning</div>
+        <div class="stage-tags">
+          <a href="#p1" class="stage-pill">Pillar I: Math &amp; Opt</a>
+          <a href="#p2" class="stage-pill">Pillar II: Prob &amp; Stats</a>
+        </div>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="pipeline-stage" role="listitem">
+        <div class="stage-badge">Stage 02</div>
+        <div class="stage-title">Systems &amp; SWE</div>
+        <div class="stage-desc">Algorithms, DBs &amp; Distributed</div>
+        <div class="stage-tags">
+          <a href="#p3" class="stage-pill">Pillar III: Algorithms</a>
+          <a href="#p4" class="stage-pill">Pillar IV: Data Eng</a>
+          <a href="#gap-section" class="stage-pill gap-pill">Industry Gap</a>
+        </div>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="pipeline-stage" role="listitem">
+        <div class="stage-badge">Stage 03</div>
+        <div class="stage-title">Modeling &amp; AI</div>
+        <div class="stage-desc">Core ML &amp; LLMs From Scratch</div>
+        <div class="stage-tags">
+          <a href="#p5" class="stage-pill">Pillar V: Core ML</a>
+          <a href="#p6" class="stage-pill">Pillar VI: Deep Learning</a>
+        </div>
+      </div>
+
+      <!-- Stage 4 -->
+      <div class="pipeline-stage" role="listitem">
+        <div class="stage-badge">Stage 04</div>
+        <div class="stage-title">Production</div>
+        <div class="stage-desc">MLOps, Systems &amp; Alignment</div>
+        <div class="stage-tags">
+          <a href="#p7" class="stage-pill">Pillar VII: MLOps</a>
+          <a href="#p8" class="stage-pill">Pillar VIII: AI Safety</a>
+        </div>
+      </div>
+
+      <!-- Stage 5 -->
+      <div class="pipeline-stage" role="listitem">
+        <div class="stage-badge" style="color:var(--accent);">Stage 05</div>
+        <div class="stage-title">Frontiers</div>
+        <div class="stage-desc">Specialized Quantitative Tracks</div>
+        <div class="stage-tags">
+          <a href="#spec-quant" class="stage-pill quant-pill">Track A: Quant Finance</a>
+          <a href="#spec-bio" class="stage-pill bio-pill">Track B: Genomic AI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Summary Section -->
+  <section id="executive-summary" style="padding:34px 0 24px;">
+    <div class="phase-head"><span class="phase-num">Definition</span><h2>The 8 Facets of a Full-Stack Data Scientist</h2></div>
+    <p class="phase-intro">A modern Full-Stack Data Scientist is an end-to-end technical practitioner capable of taking an ambiguous business question, formulating the mathematical loss function, engineering the distributed data layer, building frontier architectures, and managing production inference with clear monitoring and feedback loops.</p>
+    
+    <div class="def-grid">
+      <div class="def-card">
+        <h5>1. Theoretical Depth</h5>
+        <p>High-dimensional geometry, linear transformations, multivariable backpropagation calculus, and convex optimization duality.</p>
+      </div>
+      <div class="def-card">
+        <h5>2. Software Craftsmanship</h5>
+        <p>Type-hinted modular OOP, defensive design patterns, CLRS algorithm design, asymptotic complexity, and automated unit testing.</p>
+      </div>
+      <div class="def-card">
+        <h5>3. Systems Engineering</h5>
+        <p>Database query planners, buffer pool management, B+ Trees, ACID transactions, and distributed consensus via Raft.</p>
+      </div>
+      <div class="def-card">
+        <h5>4. Modeling &amp; Causality</h5>
+        <p>Statistical learning, regularized regression, gradient-boosted trees, and counterfactual reasoning via Causal Forests.</p>
+      </div>
+      <div class="def-card">
+        <h5>5. Modern Deep Learning</h5>
+        <p>Transformer architectures, Rotary Position Embeddings (RoPE), SwiGLU, FlashAttention, and pretraining LLMs from scratch.</p>
+      </div>
+      <div class="def-card">
+        <h5>6. Production MLOps</h5>
+        <p>Hardware-aware quantization (INT8/FP4/AWQ), high-throughput serving (vLLM/Triton), and hybrid dense vector GraphRAG.</p>
+      </div>
+      <div class="def-card">
+        <h5>7. Governance &amp; Safety</h5>
+        <p>Model alignment (DPO/RLHF), differential privacy budgeting, prompt injection defense, and EU AI Act compliance.</p>
+      </div>
+      <div class="def-card">
+        <h5>8. Frontier Specialization</h5>
+        <p>Domain mastery in either Quantitative Finance (HFT / volatility regimes) or AI for Science (DeepMind AlphaGenome / AlphaFold).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbering callout -->
+  <section id="numbering-section" style="padding:28px 0 10px;">
+    <div class="callout warn">
+      <h4>⚠ MIT EECS Course-Numbering Changes &amp; Stanford Access Guide</h4>
+      <p>MIT Course 6 renumbered its curriculum in 2022–2023. While live campus courses use 4-digit codes, the permanently archived OCW recordings sit under legacy numbers. Use the table below as your reference Rosetta Stone:</p>
+      <table class="num-table">
+        <thead>
+          <tr><th>Legacy OCW Code</th><th>Modern MIT Code</th><th>Course Title</th><th>Department Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="old">6.0001 + 6.0002</td><td class="new">6.100A + 6.100B / 6.1000</td><td>Intro to CS &amp; Computational Thinking (Python 3)</td><td>Undergraduate Core</td></tr>
+          <tr><td class="old">6.006</td><td class="new">6.1210</td><td>Introduction to Algorithms (Spring 2020)</td><td>Undergraduate Core</td></tr>
+          <tr><td class="old">6.046J</td><td class="new">6.1220</td><td>Design &amp; Analysis of Algorithms</td><td>EECS Advanced</td></tr>
+          <tr><td class="old">6.031</td><td class="new">6.1020</td><td>Software Construction</td><td>EECS Engineering</td></tr>
+          <tr><td class="old">6.033</td><td class="new">6.1800</td><td>Computer System Engineering</td><td>EECS Systems</td></tr>
+          <tr><td class="old">6.041 / 6.431</td><td class="new">6.3700 / 6.3702</td><td>Introduction to Probability (Tsitsiklis)</td><td>EECS Probability</td></tr>
+          <tr><td class="old">6.036</td><td class="new">6.3900</td><td>Introduction to Machine Learning</td><td>Undergrad Core ML</td></tr>
+          <tr><td class="old">6.867</td><td class="new">6.7900</td><td>Advanced Machine Learning &amp; Graphical Models</td><td>Graduate Core ML</td></tr>
+          <tr><td class="old">6.860</td><td class="new">6.7960</td><td>Deep Learning (Fall 2024 Modern Offering)</td><td>Graduate DL</td></tr>
+          <tr><td class="old">6.830</td><td class="new">6.5830</td><td>Database Systems</td><td>CSAIL Systems</td></tr>
+          <tr><td class="old">6.824</td><td class="new">6.5840</td><td>Distributed Systems Engineering</td><td>CSAIL Systems (Raft)</td></tr>
+          <tr><td class="old">6.S965</td><td class="new">6.5940</td><td>TinyML &amp; Efficient Deep Learning Computing</td><td>CSAIL / EfficientML</td></tr>
+          <tr><td class="old">15.S096 / 18.S096</td><td class="new">18.642</td><td>Topics in Math with Applications in Finance (Fall 2024)</td><td>Math / Sloan Finance</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PILLAR 1 -->
+  <section id="p1" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar I</span><h2>Mathematical Foundations &amp; Convex Optimization</h2><span class="phase-meta">6–8 weeks</span></div>
+    <p class="phase-intro">Linear algebra and numerical optimization represent the true language of machine learning. Attention heads, projection layers, weight matrices, and embedding vectors are linear transformations. Optimization duality dictates when problems are solvable and how solvers converge.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p1-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">18.06</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/" target="_blank" rel="noopener">Linear Algebra</a></h3>
+          <p>Gilbert Strang's legendary foundation: vector spaces, nullspaces, projections, orthonormal bases, Gram-Schmidt, eigenvalues, SVD, and positive-definite matrices.</p>
+          <div class="card-links">
+            <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/" target="_blank">OCW Page</a>
+            <a href="https://www.youtube.com/playlist?list=PLE7DDD91011BC51F8" target="_blank">YouTube Playlist</a>
+          </div>
+          <div class="note"><b>Strang Benchmark:</b> Over 10M visits; the single most influential math course for AI.</div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p1-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">18.065</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/18-065-linear-algebra-and-learning-from-data-spring-2018/" target="_blank" rel="noopener">Linear Algebra &amp; Learning from Data</a></h3>
+          <p>Low-rank approximations, randomized SVD, Eckart-Young theorem, PCA, backprop as matrix calculus, and neural network weight matrices.</p>
+          <div class="card-links">
+            <a href="https://ocw.mit.edu/courses/18-065-linear-algebra-and-learning-from-data-spring-2018/" target="_blank">OCW Page</a>
+            <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP63oMNUHXqIUcrkS2PivhN3k" target="_blank">YouTube Playlist</a>
+          </div>
+          <div class="note"><b>LoRA Connection:</b> Explains low-rank matrix decomposition and parameter-efficient tuning.</div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p1-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">18.02</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/" target="_blank" rel="noopener">Multivariable Calculus</a></h3>
+          <p>Partial derivatives, gradients, directional derivatives, Hessians, Lagrange multipliers, Jacobians, and multiple integrals.</p>
+          <div class="card-links">
+            <a href="https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/" target="_blank">OCW Page</a>
+            <a href="https://www.youtube.com/playlist?list=PL4C4C8A7D06563F38" target="_blank">YouTube Playlist</a>
+          </div>
+          <div class="note"><b>Backprop Engine:</b> Foundational for automatic differentiation and loss surface geometry.</div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p1-4">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">EE364A</span></div>
+          <h3><a href="https://online.stanford.edu/courses/ee364a-convex-optimization-i" target="_blank" rel="noopener">Convex Optimization I &amp; II</a></h3>
+          <p>Stephen Boyd's masterclass: convex sets/functions, LP, QP, SOCP, SDP, Lagrange duality, KKT conditions, interior-point methods, and ADMM.</p>
+          <div class="card-links">
+            <a href="https://web.stanford.edu/class/ee364a/" target="_blank">Course Site &amp; Free Book</a>
+            <a href="https://www.youtube.com/playlist?list=PL3940DD956CDF0622" target="_blank">YouTube Lectures</a>
+          </div>
+          <div class="note"><b>Complete Textbook:</b> Full PDF book by Boyd &amp; Vandenberghe freely provided.</div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar I Capstone</h5>
+      <p>Build a mathematical optimization package from scratch in NumPy: implement SVD via Power Iteration &amp; Deflation, randomized SVD, and solve soft-margin SVMs &amp; constrained portfolios using CVXPY with custom adaptive learning rates (Adam, RMSProp).</p>
+    </div>
+  </section>
+
+  <!-- PILLAR 2 -->
+  <section id="p2" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar II</span><h2>Probability, Statistics &amp; Causal Inference</h2><span class="phase-meta">6–8 weeks</span></div>
+    <p class="phase-intro">Standard ML predicts correlation; decision-makers require knowing the counterfactual. Master stochastic processes, maximum likelihood estimation, hypothesis testing, and the Rubin Causal Model.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p2-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.041 / 6.3700</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/" target="_blank" rel="noopener">Introduction to Probability</a></h3>
+          <p>Tsitsiklis's applied engineering treatment: probability spaces, conditional probability, Bayes' Rule, random variables, Law of Large Numbers, CLT, and Markov chains.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p2-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">18.650</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/18-650-statistics-for-applications-fall-2016/" target="_blank" rel="noopener">Statistics for Applications</a></h3>
+          <p>Rigollet's rigorous mathematical statistics: MLE, Fisher information, asymptotic normality, confidence intervals, hypothesis testing, generalized likelihood ratio, and nonparametric estimation.</p>
+          <div class="card-links"><a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60hI9ATjSFgLZpbNJ7myAg6" target="_blank">YouTube Playlist</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p2-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">StatLearning</span></div>
+          <h3><a href="https://online.stanford.edu/courses/sohs-ystatslearningp-statistical-learning-python" target="_blank" rel="noopener">Statistical Learning with Python &amp; R</a></h3>
+          <p>Hastie &amp; Tibshirani's ISLR/ISLP course: bias-variance trade-off, Ridge/Lasso regularization, GAMs, tree ensembles, boosting, SVMs, and clustering.</p>
+          <div class="card-links"><a href="https://www.statlearning.com/" target="_blank">Free Textbook &amp; Notebooks</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p2-4">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">Causal ML</span></div>
+          <h3><a href="https://web.stanford.edu/~athey/" target="_blank" rel="noopener">Causal Inference &amp; Econometrics</a></h3>
+          <p>Susan Athey &amp; Guido Imbens (Nobel Laureate): Potential Outcomes, propensity score matching, instrumental variables, regression discontinuity, synthetic controls, and Causal Forests.</p>
+          <div class="card-links"><a href="https://www.nber.org/econometrics-lectures" target="_blank">NBER Lecture Series</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar II Capstone</h5>
+      <p>Design a synthetic clinical trial / marketing intervention A/B test pipeline. Implement automated Sample Ratio Mismatch (SRM) validation, sequential testing stopping rules, and heterogeneous treatment effect estimation via Causal Forests (EconML / DoWhy).</p>
+    </div>
+  </section>
+
+  <!-- PILLAR 3 -->
+  <section id="p3" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar III</span><h2>Software Craftsmanship, Algorithms &amp; Systems</h2><span class="phase-meta">8–10 weeks</span></div>
+    <p class="phase-intro">Write production-grade, maintainable, tested, and algorithmically sound code. Understand computational complexity, sequence data structures, graph traversals, and systems architecture.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p3-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.0001 + 6.0002</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/" target="_blank" rel="noopener">Intro to CS &amp; Computational Thinking</a></h3>
+          <p>Guttag &amp; Bell: Python syntax, OOP, testing/debugging, algorithmic complexity (Big O), stochastic simulation, random walks, and Monte Carlo methods.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/" target="_blank">6.0001 OCW</a><a href="https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/" target="_blank">6.0002 OCW</a></div>
+          <div class="note"><b>Modern Code:</b> Renumbered as 6.100A / 6.100B / 6.1000.</div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="systems" data-id="p3-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS101</span></div>
+          <h3><a href="https://online.stanford.edu/courses/soe-ycscs101-computer-science-101" target="_blank" rel="noopener">Computer Science 101</a></h3>
+          <p>Nick Parlante: hardware, memory hierarchies, how the internet operates, structured tables, and cybersecurity under the hood.</p>
+          <div class="card-links"><a href="https://online.stanford.edu/courses/soe-ycscs101-computer-science-101" target="_blank">Stanford Online</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p3-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.006</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/" target="_blank" rel="noopener">Introduction to Algorithms (2020)</a></h3>
+          <p>Demaine, Devadas, Ku: Modern Python 3 data structures, hash tables with chaining/open addressing, AVL trees, heaps, BFS/DFS, Dijkstra, and Dynamic Programming.</p>
+          <div class="card-links"><a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3Ab6" target="_blank">YouTube Lectures</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="systems" data-id="p3-4">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">Roughgarden</span></div>
+          <h3><a href="https://online.stanford.edu/courses/soe-ycsalgorithms1-algorithms-design-and-analysis-part-1" target="_blank" rel="noopener">Algorithms: Design &amp; Analysis (Pt 1 &amp; 2)</a></h3>
+          <p>Tim Roughgarden's masterclass: Master Method, Quicksort, Dijkstra, greedy algorithms, Huffman codes, dynamic programming, NP-completeness, and approximation algorithms.</p>
+          <div class="card-links"><a href="https://online.stanford.edu/courses/soe-ycsalgorithms1-algorithms-design-and-analysis-part-1" target="_blank">Part 1</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p3-5">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.046J</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/" target="_blank" rel="noopener">Design &amp; Analysis of Algorithms</a></h3>
+          <p>Erik Demaine &amp; Shafi Goldwasser: Divide and conquer, randomized algorithms, amortized analysis, network flow (Max-Flow Min-Cut), NP-completeness, and reductions.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p3-6">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.031</span></div>
+          <h3><a href="https://ocw.mit.edu/ans7870/6/6.031/sp21/" target="_blank" rel="noopener">Software Construction</a></h3>
+          <p>Safe from bugs, easy to understand, ready for change: static typing, specifications, invariants, test-first development, immutable data structures, design patterns, and thread safety.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/ans7870/6/6.031/sp21/" target="_blank">Course Portal</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p3-7">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.033 / 6.1800</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/" target="_blank" rel="noopener">Computer System Engineering</a></h3>
+          <p>Client-server design, virtual memory, networking protocols, atomicity, recovery, security, fault tolerance, and concurrency models.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar III Capstone</h5>
+      <p>Engineer a standalone, pip-installable spatial indexing library implementing a balanced k-d tree and Ball Tree in pure Python/Cython. Include strict type hinting (MyPy), comprehensive unit tests (PyTest, 90%+ coverage), benchmarking harnesses, and automated CI testing via GitHub Actions.</p>
+    </div>
+  </section>
+
+  <!-- PILLAR 4 -->
+  <section id="p4" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar IV</span><h2>Data Engineering, Database Internals &amp; Distributed Systems</h2><span class="phase-meta">8–10 weeks</span></div>
+    <p class="phase-intro">Ingest, query, and process petabyte-scale data across distributed clusters. Understand relational query execution plans, buffer management, B+ Trees, ACID transactions, and Raft consensus.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="stan" data-category="systems" data-id="p4-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">Widom DBs</span></div>
+          <h3><a href="https://online.stanford.edu/courses/soe-ydatabases0004-databases-semistructured-data" target="_blank" rel="noopener">Databases (5-Course Mini Series)</a></h3>
+          <p>Jennifer Widom's flagship: Relational DBs &amp; SQL, XML Data, Semistructured Data (JSON), Indexes &amp; Transactions, and Advanced Topics in SQL (OLAP &amp; Recursion).</p>
+          <div class="card-links"><a href="https://online.stanford.edu/courses/soe-ydatabases0001-databases-relational-databases-and-sql" target="_blank">Relational &amp; SQL</a><a href="https://online.stanford.edu/courses/soe-ydatabases0004-databases-semistructured-data" target="_blank">Semistructured</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p4-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.830 / 6.5830</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/" target="_blank" rel="noopener">Database Systems (SimpleDB Engine)</a></h3>
+          <p>Madden &amp; Stonebraker (Turing Laureate): Buffer pool management, B+ Tree indexing, hash joins, query optimization, 2PL, WAL/ARIES logging, and column stores.</p>
+          <div class="card-links"><a href="https://dsg.csail.mit.edu/6.5830/" target="_blank">Modern Course Site</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p4-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.824 / 6.5840</span></div>
+          <h3><a href="https://pdos.csail.mit.edu/6.824/" target="_blank" rel="noopener">Distributed Systems Engineering</a></h3>
+          <p>Robert Morris: RPCs, fault tolerance, replication, Raft consensus protocol, linearizability, Two-Phase Commit, MapReduce, Spanner, and key-value storage.</p>
+          <div class="card-links"><a href="https://pdos.csail.mit.edu/6.824/" target="_blank">Course Site &amp; Go Labs</a><a href="https://www.youtube.com/channel/UC_7WrbZTCODu1o_maWUpVWg" target="_blank">YouTube</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="systems" data-id="p4-4">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS246</span></div>
+          <h3><a href="https://online.stanford.edu/courses/cs246-mining-massive-datasets" target="_blank" rel="noopener">Mining Massive Datasets</a></h3>
+          <p>Jure Leskovec: MapReduce/Spark, streaming sketches (Count-Min, Flajolet-Martin), Locality-Sensitive Hashing (LSH) for high-dimensional vector search, PageRank, and recommendation systems.</p>
+          <div class="card-links">          <a href="https://web.stanford.edu/class/cs246/" target="_blank" rel="noopener noreferrer">Free Book &amp; Site</a><a href="https://www.youtube.com/playlist?list=PLoROMvodv4rOPRw9Ue1Fm2WJL8ptAgpxO" target="_blank">YouTube</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar IV Capstone</h5>
+      <p>Build an end-to-end distributed data streaming pipeline using Apache Kafka and PySpark. Stream real-time events, calculate rolling window aggregates, perform Locality-Sensitive Hashing (LSH) for deduplication, and store outputs in a columnar DuckDB/Parquet lakehouse.</p>
+    </div>
+  </section>
+
+  <!-- INDUSTRY GAP CALLOUT -->
+  <section id="gap-section" style="padding:28px 0 10px;">
+    <div class="callout accent">
+      <h4>◇ The Industry Engineering Gap — What Academia Omits &amp; How to Master It</h4>
+      <p>MIT OCW and Stanford Online teach rigorous theory, but no university lecture course covers day-to-day production tooling. Master this production stack in parallel:</p>
+      <ul>
+        <li><b>Environment &amp; Linux CLI:</b> Bash scripting, process management, POSIX tooling (awk, sed, grep), and SSH.</li>
+        <li><b>Version Control:</b> Git trunk-based workflows, interactive rebases, cherry-picking, and pull request reviews.</li>
+        <li><b>Containerization &amp; Orchestration:</b> Multi-stage Dockerfiles, Docker Compose, Kubernetes manifests, and Helm charts.</li>
+        <li><b>API Engineering:</b> High-performance async microservices with <code>FastAPI</code>, strict <code>Pydantic v2</code> schemas, and gRPC.</li>
+        <li><b>CI/CD Automation:</b> Automated linting (Ruff), type checking (MyPy), testing (PyTest), and container deployment via GitHub Actions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PILLAR 5 -->
+  <section id="p5" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar V</span><h2>Core Machine Learning &amp; Statistical Modeling</h2><span class="phase-meta">8–10 weeks</span></div>
+    <p class="phase-intro">Master supervised, unsupervised, and reinforcement learning with mathematical derivations and algorithmic depth. Compare empirical optimization with statistical learning theory.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p5-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS229</span></div>
+          <h3><a href="https://cs229.stanford.edu/" target="_blank" rel="noopener">Machine Learning</a></h3>
+          <p>Andrew Ng, Tengyu Ma, Christopher Ré: GLMs, SVM duals and kernels, PAC learning, VC dimension, EM algorithm, PCA, Factor Analysis, and MDPs.</p>
+          <div class="card-links"><a href="https://cs229.stanford.edu/" target="_blank">Course Hub &amp; Notes</a><a href="https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU" target="_blank">YouTube</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p5-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.036 / 6.390</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/" target="_blank" rel="noopener">Introduction to Machine Learning</a></h3>
+          <p>Kaelbling &amp; Lozano-Pérez: Perceptrons, margin maximization, gradient descent variations, feature representation, autoencoders, and Q-learning.</p>
+          <div class="card-links"><a href="https://introml.odl.mit.edu/" target="_blank">Interactive Notes</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p5-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.867 / 6.7900</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-867-machine-learning-fall-2006/" target="_blank" rel="noopener">Advanced Machine Learning</a></h3>
+          <p>Jaakkola &amp; Collins: Probabilistic Graphical Models (PGMs), Bayesian networks, HMMs, variational inference, MCMC, and Dirichlet processes.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/6-867-machine-learning-fall-2006/" target="_blank">OCW Page</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p5-4">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">15.071</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/15-071-the-analytics-edge-spring-2017/" target="_blank" rel="noopener">The Analytics Edge</a></h3>
+          <p>Dimitris Bertsimas: Real-world case studies in Moneyball, Framingham Heart Study, IBM Watson, and Netflix using regression, trees, clustering, and integer optimization.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/15-071-the-analytics-edge-spring-2017/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar V Capstone</h5>
+      <p>Build a production-grade machine learning model pipeline on tabular business data using Scikit-Learn, LightGBM, and XGBoost. Implement custom objective loss functions, automated Bayesian hyperparameter tuning with Optuna, SHAP explainability analyses, and nested cross-validation to prevent data leakage.</p>
+    </div>
+  </section>
+
+  <!-- PILLAR 6 -->
+  <section id="p6" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar VI</span><h2>Deep Learning, Vision, NLP &amp; Generative AI</h2><span class="phase-meta">10–12 weeks · Long-term depth</span></div>
+    <p class="phase-intro">Deep learning courses from three years ago omit modern LLM pretraining dynamics and alignment. Every course here is either freshly recorded or actively maintained for 2024–2026 cohorts.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p6-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.S191</span><span class="badge badge-accent">Updated Annually</span></div>
+          <h3><a href="https://introtodeeplearning.com/" target="_blank" rel="noopener noreferrer">Introduction to Deep Learning</a></h3>
+          <p>Alexander Amini &amp; Ava Soleimany: Re-recorded live every January. CNNs, Transformers, Diffusion models, Foundation Models, and AI for Science.</p>
+          <div class="card-links"><a href="https://introtodeeplearning.com/" target="_blank" rel="noopener noreferrer">Portal &amp; Colab Labs</a><a href="https://www.youtube.com/@MIT6S191" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p6-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.7960</span><span class="badge badge-accent">Fall 2024</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-7960-deep-learning-fall-2024/" target="_blank" rel="noopener">Deep Learning</a></h3>
+          <p>Phillip Isola: MLPs, CNNs, RNNs, Graph Neural Networks, Transformers, geometry in deep learning, and learning theory in high dimensions.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/6-7960-deep-learning-fall-2024/" target="_blank">OCW Page</a><a href="https://phillipi.github.io/6.7960/" target="_blank">Course Site</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p6-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">15.773</span><span class="badge badge-accent">Spring 2024</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/15-773-hands-on-deep-learning-spring-2024/" target="_blank" rel="noopener">Hands-On Deep Learning</a></h3>
+          <p>MIT Sloan: Practical deep learning architectures framed around predictive and generative AI enterprise applications.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/15-773-hands-on-deep-learning-spring-2024/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p6-4">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS336</span><span class="badge badge-accent">Flagship LLM</span></div>
+          <h3><a href="https://cs336.stanford.edu/" target="_blank" rel="noopener">Language Modeling from Scratch</a></h3>
+          <p>Percy Liang &amp; Tatsunori Hashimoto: Build an LLM completely from scratch in PyTorch &amp; Triton: BPE tokenizers, RMSNorm, SwiGLU, RoPE, KV-cache, FSDP, FlashAttention, and DPO alignment.</p>
+          <div class="card-links"><a href="https://cs336.stanford.edu/" target="_blank">Stanford CS336 Hub</a></div>
+          <div class="note"><b>Active Cohort:</b> The strongest long-horizon course in this curriculum.</div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p6-5">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS224N</span></div>
+          <h3><a href="https://web.stanford.edu/class/cs224n/" target="_blank" rel="noopener">NLP with Deep Learning</a></h3>
+          <p>Christopher Manning: Word vectors, self-attention, Transformer architecture, pretraining, fine-tuning, RAG, prompt engineering, and multimodal LLMs.</p>
+          <div class="card-links"><a href="https://web.stanford.edu/class/cs224n/" target="_blank">Course Hub</a><a href="https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ" target="_blank">YouTube</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p6-6">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS231n</span></div>
+          <h3><a href="https://cs231n.stanford.edu/" target="_blank" rel="noopener">Deep Learning for Computer Vision</a></h3>
+          <p>Fei-Fei Li, Justin Johnson, Serena Yeung: CNNs (ResNet, ConvNeXt), object detection (YOLO), segmentation, Vision Transformers (ViT), and diffusion models.</p>
+          <div class="card-links"><a href="https://cs231n.stanford.edu/" target="_blank">Course Site</a><a href="https://www.youtube.com/playlist?list=PL3FW7PR477UufDD_M-VBrCdQq_bmY2pNg" target="_blank">YouTube</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p6-7">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS230</span></div>
+          <h3><a href="https://cs230.stanford.edu/" target="_blank" rel="noopener">Deep Learning Engineering</a></h3>
+          <p>Andrew Ng: Practical hyperparameter tuning, batch normalization, weight initialization, error analysis, and multi-task loss weighting.</p>
+          <div class="card-links"><a href="https://cs230.stanford.edu/" target="_blank">Course Site</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p6-8">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS234</span></div>
+          <h3><a href="https://web.stanford.edu/class/cs234/" target="_blank" rel="noopener">Reinforcement Learning</a></h3>
+          <p>Emma Brunskill: MDPs, Q-learning, policy gradients (PPO, TRPO), exploration vs exploitation (bandits), offline RL, and RLHF mechanics.</p>
+          <div class="card-links"><a href="https://web.stanford.edu/class/cs234/" target="_blank">Course Hub</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p6-9">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS25</span></div>
+          <h3><a href="https://web.stanford.edu/class/cs25/" target="_blank" rel="noopener">Transformers United (Seminar)</a></h3>
+          <p>Guest lectures from OpenAI, Anthropic, DeepMind on State Space Models (Mamba), Mixture of Experts (MoE), and long-context scaling.</p>
+          <div class="card-links"><a href="https://web.stanford.edu/class/cs25/" target="_blank">Stanford CS25</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar VI Capstone</h5>
+      <p>Build a mini-Transformer decoder from scratch in PyTorch &amp; Triton following the CS336 specification: train a custom BPE tokenizer, implement RMSNorm, SwiGLU, RoPE, and KV-cache; pretrain with PyTorch FSDP; and fine-tune with LoRA and DPO.</p>
+    </div>
+  </section>
+
+  <!-- PILLAR 7 -->
+  <section id="p7" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar VII</span><h2>Production MLOps, Efficient Computing &amp; ML Systems</h2><span class="phase-meta">8–10 weeks</span></div>
+    <p class="phase-intro">Deploying modern LLMs costs millions in compute. Master model compression, mixed-precision quantization (INT8/FP4/AWQ), low-latency serving (vLLM/Triton), and knowledge graph integration.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="stan" data-category="systems" data-id="p7-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS329S</span></div>
+          <h3><a href="https://stanford-cs329s.github.io/" target="_blank" rel="noopener">Machine Learning Systems Design</a></h3>
+          <p>Chip Huyen &amp; Christopher Ré: Data pipelines, Feature Stores, model parallelism, serving architectures (batch vs streaming), data drift, and continuous retraining.</p>
+          <div class="card-links"><a href="https://stanford-cs329s.github.io/" target="_blank">Course Hub</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="systems" data-id="p7-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">6.S965 / 6.5940</span></div>
+          <h3><a href="https://efficientml.ai/" target="_blank" rel="noopener">TinyML &amp; Efficient Deep Learning</a></h3>
+          <p>Song Han: Pruning, quantization (INT8, FP4, AWQ, SmoothQuant), Neural Architecture Search, FlashAttention hardware co-design, and fast LLM serving.</p>
+          <div class="card-links"><a href="https://efficientml.ai/" target="_blank">EfficientML Portal</a><a href="https://www.youtube.com/playlist?list=PL80kAHvQbh-ocHG0mNmhhE8QkWmr30iBi" target="_blank">YouTube</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="systems" data-id="p7-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS520</span></div>
+          <h3><a href="https://kgtutorial.github.io/" target="_blank" rel="noopener">Knowledge Graphs &amp; GraphRAG</a></h3>
+          <p>Michael Genesereth &amp; Vinay Chaudhri: RDF/OWL representations, entity resolution, ontology engineering, and hybrid dense vector + knowledge graph retrieval.</p>
+          <div class="card-links"><a href="https://kgtutorial.github.io/" target="_blank">Course Site</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p7-4">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS330</span></div>
+          <h3><a href="https://cs330.stanford.edu/" target="_blank" rel="noopener">Deep Multi-Task &amp; Meta-Learning</a></h3>
+          <p>Chelsea Finn: Few-shot learning, MAML, black-box meta-learning, in-context learning mechanics, and foundation model domain adaptation.</p>
+          <div class="card-links"><a href="https://cs330.stanford.edu/" target="_blank">Course Hub</a><a href="https://www.youtube.com/playlist?list=PLoROMvodv4rMC6zfYmnD7UG3LVvwaITY5" target="_blank">YouTube</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar VII Capstone</h5>
+      <p>Build and deploy a containerized RAG service on Kubernetes: asynchronous document embedding via Celery/Redis, hybrid Qdrant + BM25 search, quantized LLM served via vLLM/Triton, and Prometheus/Grafana TTFT monitoring.</p>
+    </div>
+  </section>
+
+  <!-- PILLAR 8 -->
+  <section id="p8" data-phase>
+    <div class="phase-head"><span class="phase-num">Pillar VIII</span><h2>AI Safety, Alignment &amp; Production Governance</h2><span class="phase-meta">4–6 weeks</span></div>
+    <p class="phase-intro">Ensure safety, fairness, regulatory compliance, robustness against adversarial attacks, and ethical alignment in production systems.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p8-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS324</span></div>
+          <h3><a href="https://stanford-cs324.github.io/" target="_blank" rel="noopener">Large Language Models (Safety &amp; Scaling)</a></h3>
+          <p>Liang, Hashimoto, Ré: Scaling laws, data deduplication, prompt injection, jailbreaking, alignment (RLHF, DPO, Constitutional AI), and HELM benchmarking.</p>
+          <div class="card-links"><a href="https://stanford-cs324.github.io/" target="_blank">Open Course Book</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="core" data-id="p8-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-stan">Stanford</span><span class="code">CS182</span></div>
+          <h3><a href="https://online.stanford.edu/courses/cs182-ethics-public-policy-and-technological-change" target="_blank" rel="noopener">Ethics, Public Policy &amp; Tech</a></h3>
+          <p>Reich, Sahami, Weinstein: Algorithmic fairness, differential privacy, autonomous decision systems, and regulatory frameworks (EU AI Act, NIST AI RMF).</p>
+          <div class="card-links"><a href="https://online.stanford.edu/courses/cs182-ethics-public-policy-and-technological-change" target="_blank">Stanford Profile</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="core" data-id="p8-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-mit">MIT</span><span class="code">SERC / STS.004</span></div>
+          <h3><a href="https://mit-serc.pubpub.org/" target="_blank" rel="noopener">Social &amp; Ethical Responsibilities of Computing</a></h3>
+          <p>MIT Schwarzman College: Case studies in algorithmic discrimination, facial recognition bias, privacy preservation, and clinical decision auditing.</p>
+          <div class="card-links"><a href="https://mit-serc.pubpub.org/" target="_blank">SERC Case Studies</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Pillar VIII Capstone</h5>
+      <p>Create a comprehensive Model Governance Card and automated red-teaming pipeline. Audit an LLM or ML classifier for disparate impact across demographic slices, compute differential privacy budgets (ε, δ), and benchmark vulnerability against prompt injection and data extraction attacks.</p>
+    </div>
+  </section>
+
+  <!-- SPECIALIZATION TRACK A -->
+  <section id="spec-quant" data-phase>
+    <div class="phase-head"><span class="phase-num">Track A</span><h2>Specialization — Quantitative Finance &amp; Volatility</h2><span class="phase-meta">Optional Frontier Branch</span></div>
+    <p class="phase-intro">Tailored for quant research, HFT, algorithmic trading, and volatility regime detection (e.g., DSE / US equities). Bridges stochastic processes and financial econometrics to high-frequency execution.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="mit" data-category="spec" data-id="spec-a-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-spec-quant">MIT</span><span class="code">18.642</span><span class="badge badge-accent">Fall 2024</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/18-642-topics-in-mathematics-with-applications-in-finance-fall-2024/" target="_blank" rel="noopener">Topics in Math with Applications in Finance</a></h3>
+          <p>Stochastic processes, time-series analysis, volatility modeling, VaR, factor models, portfolio theory, and statistical arbitrage taught jointly by MIT mathematicians and quant practitioners.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/18-642-topics-in-mathematics-with-applications-in-finance-fall-2024/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="spec" data-id="spec-a-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-spec-quant">MIT</span><span class="code">15.450</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/15-450-analytics-of-finance-fall-2010/" target="_blank" rel="noopener">Analytics of Finance</a></h3>
+          <p>Leonid Kogan: Financial econometrics, dynamic portfolio choice, Monte Carlo simulation, Itô calculus, Black-Scholes, risk-neutral valuation, and term-structure modeling.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/15-450-analytics-of-finance-fall-2010/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="stan" data-category="spec" data-id="spec-a-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-spec-quant">Stanford</span><span class="code">CME 241</span></div>
+          <h3><a href="https://cme241.stanford.edu/" target="_blank" rel="noopener">Reinforcement Learning for Finance</a></h3>
+          <p>Ashwin Rao: MDPs, dynamic programming, optimal trade execution, market making, order book simulation, and portfolio rebalancing via reinforcement learning.</p>
+          <div class="card-links"><a href="https://cme241.stanford.edu/" target="_blank">Course Hub &amp; Python Repo</a></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Track A Capstone</h5>
+      <p>Build an equity volatility-regime classifier and backtesting engine for equities (e.g. DSE or US equities): model volatility spikes with GARCH and Hawkes processes, estimate regime shifts using Hidden Markov Models, and backtest a market-neutral statistical arbitrage strategy.</p>
+    </div>
+  </section>
+
+  <!-- SPECIALIZATION TRACK B -->
+  <section id="spec-bio" data-phase>
+    <div class="phase-head"><span class="phase-num">Track B</span><h2>Specialization — AI for Science &amp; Genomic Data Science</h2><span class="phase-meta">Optional Frontier Branch</span></div>
+    <p class="phase-intro">Apply modern sequence modeling, representation learning, and deep learning to molecular biology, functional genomics, and genetic variant effect prediction using the Google DeepMind AlphaGenome Atlas.</p>
+    <div class="phase-progress-row"><div class="progress-track"><div class="progress-fill"></div></div><span class="progress-label" data-count></span></div>
+    <div class="grid" data-cards>
+
+      <div class="card" data-school="mit" data-category="spec" data-id="spec-b-1">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-spec-bio">MIT</span><span class="code">6.047 / 6.5800</span></div>
+          <h3><a href="https://ocw.mit.edu/courses/6-047-computational-biology-genomes-networks-evolution-fall-2012/" target="_blank" rel="noopener">Computational Biology: Genomes &amp; Networks</a></h3>
+          <p>Manolis Kellis: Sequence alignment (Smith-Waterman), HMMs for gene finding, motif discovery, epigenomics, regulatory genomics, phylogenetics, and network biology.</p>
+          <div class="card-links"><a href="https://ocw.mit.edu/courses/6-047-computational-biology-genomes-networks-evolution-fall-2012/" target="_blank">OCW Course</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="spec" data-id="spec-b-2">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-spec-bio">MIT</span><span class="code">6.874 / 6.8740</span></div>
+          <h3><a href="https://mit6874.github.io/" target="_blank" rel="noopener">Deep Learning in the Life Sciences</a></h3>
+          <p>David Gifford: Neural network architectures for regulatory genomics, transcription factor binding prediction, single-cell RNA-seq modeling, and molecular representation.</p>
+          <div class="card-links"><a href="https://mit6874.github.io/" target="_blank">Course Portal</a></div>
+        </div></div>
+      </div>
+
+      <div class="card" data-school="mit" data-category="spec" data-id="spec-b-3">
+        <div class="card-top"><input type="checkbox" class="cb"><div class="card-body">
+          <div class="badge-row"><span class="badge badge-spec-bio">DeepMind</span><span class="code">AlphaGenome</span></div>
+          <h3><a href="https://deepmind.google.com/science/alphagenome/atlas" target="_blank" rel="noopener">AlphaGenome Atlas &amp; Variant Impact</a></h3>
+          <p>State-of-the-art foundation model for regulatory genomics: score variant effects across RNA-seq, DNase, and ChIP-TF modalities; co-plot sashimi arcs with continuous RNA-seq to detect cryptic splicing.</p>
+          <div class="card-links"><a href="https://deepmind.google.com/science/alphagenome/atlas" target="_blank">AlphaGenome Atlas</a></div>
+          <div class="note"><b>Mandatory Splicing Rule:</b> Always evaluate sashimi arc splice junctions alongside continuous RNA-seq read depth to observe structural defects and transcript abundance changes simultaneously.</div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="capstone-box">
+      <h5>Track B Capstone</h5>
+      <p>Build a clinical variant pathogenicity pipeline integrating ClinVar, gnomAD, and the DeepMind AlphaGenome Atlas: predict non-coding variant impact on gene expression, accessibility, and transcription factor binding; and construct deep-links co-plotting continuous RNA-seq with splice junction sashimi arcs.</p>
+    </div>
+  </section>
+
+  <!-- MASTER COMPARISON MATRIX -->
+  <section id="matrix-section" style="padding:48px 0 24px;">
+    <div class="phase-head"><span class="phase-num">Synthesis</span><h2>Master Comparison &amp; Technology Mapping</h2></div>
+    <p class="phase-intro">A unified technology mapping across all 8 core pillars and 2 specialization tracks, detailing primary disciplines, flagship courses, and production toolchains.</p>
+    
+    <div style="overflow-x:auto;">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Pillar / Track</th>
+            <th>Core Discipline</th>
+            <th>Flagship MIT Course</th>
+            <th>Flagship Stanford Course</th>
+            <th>Primary Modern Stack</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Pillar I</b></td>
+            <td>Mathematical Foundations</td>
+            <td>MIT 18.06 &amp; 18.065</td>
+            <td>Stanford EE364A &amp; EE364B</td>
+            <td><code>NumPy, SciPy, CVXPY</code></td>
+          </tr>
+          <tr>
+            <td><b>Pillar II</b></td>
+            <td>Probability &amp; Causality</td>
+            <td>MIT 6.041 &amp; 18.650</td>
+            <td>Stanford StatLearning &amp; Causal ML</td>
+            <td><code>Statsmodels, EconML, DoWhy</code></td>
+          </tr>
+          <tr>
+            <td><b>Pillar III</b></td>
+            <td>SWE &amp; Algorithms</td>
+            <td>MIT 6.006 &amp; 6.031</td>
+            <td>Stanford CS101 &amp; Algorithms</td>
+            <td><code>Python 3, PyTest, MyPy, Git</code></td>
+          </tr>
+          <tr>
+            <td><b>Pillar IV</b></td>
+            <td>Data Engineering &amp; Systems</td>
+            <td>MIT 6.830 &amp; 6.824</td>
+            <td>Stanford Databases &amp; CS246</td>
+            <td><code>DuckDB, Spark, Kafka, Parquet</code></td>
+          </tr>
+          <tr>
+            <td><b>Industry Gap</b></td>
+            <td>Production Systems &amp; CI/CD</td>
+            <td>MIT 6.033</td>
+            <td>Stanford Engineering Hubs</td>
+            <td><code>Docker, Kubernetes, Linux, FastAPI</code></td>
+          </tr>
+          <tr>
+            <td><b>Pillar V</b></td>
+            <td>Core Machine Learning</td>
+            <td>MIT 6.036 &amp; 6.867</td>
+            <td>Stanford CS229</td>
+            <td><code>Scikit-Learn, LightGBM, XGBoost</code></td>
+          </tr>
+          <tr>
+            <td><b>Pillar VI</b></td>
+            <td>Deep Learning &amp; GenAI</td>
+            <td>MIT 6.S191 &amp; 6.7960</td>
+            <td>Stanford CS224N, CS231n, CS336</td>
+            <td><code>PyTorch, Triton, Transformers, LoRA</code></td>
+          </tr>
+          <tr>
+            <td><b>Pillar VII</b></td>
+            <td>Production MLOps</td>
+            <td>MIT 6.S965 / 6.5940</td>
+            <td>Stanford CS329S &amp; CS520</td>
+            <td><code>vLLM, Triton Server, Qdrant, MLflow</code></td>
+          </tr>
+          <tr>
+            <td><b>Pillar VIII</b></td>
+            <td>Safety &amp; Governance</td>
+            <td>MIT SERC / STS.004</td>
+            <td>Stanford CS324 &amp; CS182</td>
+            <td><code>HELM, Ragas, Fairlearn, Diffprivlib</code></td>
+          </tr>
+          <tr>
+            <td><b>Track A</b></td>
+            <td>Quant Finance &amp; Volatility</td>
+            <td>MIT 18.642 &amp; 15.450</td>
+            <td>Stanford CME 241</td>
+            <td><code>ARCH, QuantLib, Statsmodels</code></td>
+          </tr>
+          <tr>
+            <td><b>Track B</b></td>
+            <td>AI for Science / Genomics</td>
+            <td>MIT 6.047 &amp; 6.874</td>
+            <td>Stanford CS279</td>
+            <td><code>AlphaGenome Atlas, Biopython</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- EXECUTION SCHEDULES -->
+  <section id="schedules-section" style="padding:48px 0 24px;">
+    <div class="phase-head"><span class="phase-num">Pacing</span><h2>Recommended Execution Schedules</h2></div>
+    <p class="phase-intro">Select an execution schedule tailored to your existing background, technical strengths, and weekly time commitment.</p>
+
+    <div class="sched-grid">
+      <div class="sched-card">
+        <h4>Track A: Comprehensive Self-Paced</h4>
+        <span class="schedule-pill">18–24 Months · 12–18 hrs/week</span>
+        <p><b>Structure:</b> Allocate 2 to 3 months per pillar. Work through all theoretical problem sets and complete the hands-on capstone before advancing.</p>
+        <p><b>Target Audience:</b> Beginners or professionals transitioning from non-technical fields who require complete mathematical and engineering depth.</p>
+      </div>
+
+      <div class="sched-card">
+        <h4>Track B: Accelerated for Software Engineers</h4>
+        <span class="schedule-pill">9–12 Months · 20–25 hrs/week</span>
+        <p><b>Structure:</b> Fast-forward through Pillar III (SWE) and Pillar IV (Databases/Systems). Allocate 80% of effort to Pillar I (Math), Pillar II (Stats), Pillar V (ML), Pillar VI (CS336 LLMs), and Pillar VII (MLOps).</p>
+        <p><b>Target Audience:</b> Backend, cloud, and distributed systems engineers who already write modular code and deploy containerized services.</p>
+      </div>
+
+      <div class="sched-card">
+        <h4>Track C: Accelerated for Quantitative / STEM Grads</h4>
+        <span class="schedule-pill">9–12 Months · 20–25 hrs/week</span>
+        <p><b>Structure:</b> Fast-forward through Pillar I (Linear Algebra &amp; Calculus) and Pillar II (Probability &amp; Stats). Focus heavily on Pillar III (Software Construction &amp; 6.006), Pillar IV (Distributed Systems), The Industry Gap, Pillar VI (CS336 LLMs), and Pillar VII (MLOps).</p>
+        <p><b>Target Audience:</b> Physicists, mathematicians, and quantitative researchers who need software craftsmanship and production systems expertise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZERO-COST ACCESS STRATEGY -->
+  <section id="access-section" style="padding:48px 0 24px;">
+    <div class="phase-head"><span class="phase-num">Guide</span><h2>Zero-Cost Access Strategy</h2></div>
+    <p class="phase-intro">All resources in this curriculum are completely free and un-gated. Follow these exact methods to access materials without paywalls:</p>
+
+    <div class="callout plain">
+      <h4>1. MIT OpenCourseWare (OCW)</h4>
+      <p>Always 100% free and open. All lecture notes, syllabi, problem sets, and exams can be downloaded directly in PDF without creating an account. Full video playlists are available on the course pages or directly via MIT's official YouTube channels (<code>@mitocw</code> and <code>@MIT6S191</code>).</p>
+      
+      <h4 style="margin-top:16px;">2. Stanford Online &amp; edX Free Audit Route</h4>
+      <p>When clicking through to edX courses (such as <i>Statistical Learning</i> or <i>Databases</i>), always select the <b>"Free / Audit Track"</b>. This grants full, unrestricted access to all lecture videos, readings, and course materials without paying for a verified certificate.</p>
+      
+      <h4 style="margin-top:16px;">3. Stanford Departmental Public Portals</h4>
+      <p>Stanford CS and EE departments host public, un-gated websites for their premier courses (e.g., <code>cs229.stanford.edu</code>, <code>cs224n.stanford.edu</code>, <code>cs231n.stanford.edu</code>, <code>cs336.stanford.edu</code>, <code>stanford-cs329s.github.io</code>, <code>stanford-cs324.github.io</code>). These hubs publish slides, reading lists, lecture notes, and assignment specifications openly.</p>
+
+      <h4 style="margin-top:16px;">4. YouTube Repositories</h4>
+      <p>Both Stanford Online (<code>@stanfordonline</code>) and MIT OCW (<code>@mitocw</code>) maintain official, high-definition lecture playlists for every flagship lecture series featured in this roadmap.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var STORAGE_KEY = "dsroadmap-progress-v2";
+  var state = {};
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("dsroadmap-progress-v1");
+    if (raw) state = JSON.parse(raw) || {};
+  } catch(e) { state = {}; }
+
+  function save(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function applyState(){
+    document.querySelectorAll(".card[data-id]").forEach(function(card){
+      var id = card.getAttribute("data-id");
+      var cb = card.querySelector(".cb");
+      var on = !!state[id];
+      if (cb) {
+        cb.checked = on;
+        var title = card.querySelector("h3");
+        if (title) cb.setAttribute("aria-label", "Mark " + title.textContent.trim() + " as complete");
+      }
+      card.classList.toggle("done", on);
+    });
+    updateAllProgress();
+  }
+
+  function updateAllProgress(){
+    var allCards = document.querySelectorAll(".card[data-id]");
+    var globalTotal = allCards.length;
+    var globalDone = 0;
+
+    document.querySelectorAll("[data-phase]").forEach(function(phase){
+      var cards = phase.querySelectorAll(".card[data-id]");
+      var total = cards.length, done = 0;
+      cards.forEach(function(c){
+        if (state[c.getAttribute("data-id")]) { done++; globalDone++; }
+      });
+      var pct = total ? Math.round((done/total)*100) : 0;
+      var fill = phase.querySelector(".progress-fill");
+      var label = phase.querySelector("[data-count]");
+      if (fill) fill.style.transform = "scaleX(" + (pct / 100) + ")";
+      if (label) label.textContent = done + " / " + total + " completed (" + pct + "%)";
+    });
+
+    var globalPct = globalTotal ? Math.round((globalDone / globalTotal) * 100) : 0;
+    var overallFill = document.getElementById("overallFill");
+    var overallPct = document.getElementById("overallPct");
+    var completedCountVal = document.getElementById("completedCountVal");
+    var totalCoursesVal = document.getElementById("totalCoursesVal");
+
+    if (overallFill) overallFill.style.transform = "scaleX(" + (globalPct / 100) + ")";
+    if (overallPct) overallPct.textContent = globalPct + "% Complete";
+    if (completedCountVal) completedCountVal.textContent = globalDone + " / " + globalTotal;
+    if (totalCoursesVal) totalCoursesVal.textContent = globalTotal;
+  }
+
+  document.addEventListener("change", function(e){
+    if (!e.target.classList.contains("cb")) return;
+    var card = e.target.closest(".card[data-id]");
+    if (!card) return;
+    var id = card.getAttribute("data-id");
+    state[id] = e.target.checked;
+    card.classList.toggle("done", e.target.checked);
+    save();
+    updateAllProgress();
+  });
+
+  applyState();
+
+  // Search functionality
+  var searchInput = document.getElementById("courseSearch");
+  var activeFilter = "all";
+
+  function filterCards(){
+    var query = (searchInput ? searchInput.value.toLowerCase().trim() : "");
+    document.querySelectorAll(".card[data-id]").forEach(function(card){
+      var school = card.getAttribute("data-school");
+      var category = card.getAttribute("data-category");
+      var text = card.textContent.toLowerCase();
+
+      var matchesFilter = false;
+      if (activeFilter === "all") matchesFilter = true;
+      else if (activeFilter === "mit" && school === "mit") matchesFilter = true;
+      else if (activeFilter === "stan" && school === "stan") matchesFilter = true;
+      else if (activeFilter === "core" && category === "core") matchesFilter = true;
+      else if (activeFilter === "systems" && category === "systems") matchesFilter = true;
+      else if (activeFilter === "spec" && category === "spec") matchesFilter = true;
+
+      var matchesSearch = (!query || text.indexOf(query) !== -1);
+      card.style.display = (matchesFilter && matchesSearch) ? "" : "none";
+    });
+  }
+
+  if (searchInput){
+    searchInput.addEventListener("input", filterCards);
+  }
+
+  // Filter Buttons
+  var filterBtns = document.querySelectorAll(".filter-btn");
+  filterBtns.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      filterBtns.forEach(function(b){ b.classList.remove("active"); });
+      btn.classList.add("active");
+      activeFilter = btn.getAttribute("data-filter");
+      filterCards();
+    });
+  });
+
+  // Theme Toggle
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn){
+    themeBtn.addEventListener("click", function(){
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var next;
+      if (!current) next = prefersDark ? "light" : "dark";
+      else if (current === "dark") next = "light";
+      else next = "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("dsroadmap-theme", next); } catch(e){}
+    });
+    try {
+      var savedTheme = localStorage.getItem("dsroadmap-theme");
+      if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+    } catch(e){}
+  }
+})();
+</script>
+</body>
+</html>
