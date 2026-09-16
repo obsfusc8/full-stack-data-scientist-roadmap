@@ -6,11 +6,11 @@ The roadmap connects mathematical foundations to software engineering, data syst
 
 ## Roadmap at a glance
 
-1. **Foundations** — linear algebra, calculus, probability, statistics, and optimization
-2. **Systems & software engineering** — algorithms, software construction, databases, and distributed systems
-3. **Modeling & AI** — classical machine learning, deep learning, NLP, vision, and language modeling
-4. **Production** — MLOps, efficient inference, systems design, governance, and safety
-5. **Frontiers** — quantitative finance and AI for science / genomics
+1. **Foundations** : linear algebra, calculus, probability, statistics, and optimization
+2. **Systems & software engineering** : algorithms, software construction, databases, and distributed systems
+3. **Modeling & AI** : classical machine learning, deep learning, NLP, vision, and language modeling
+4. **Production** : MLOps, efficient inference, systems design, governance, and safety
+5. **Frontiers** : quantitative finance and AI for science / genomics
 
 ## Features
 
